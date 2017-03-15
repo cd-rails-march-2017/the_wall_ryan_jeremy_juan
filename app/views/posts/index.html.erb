@@ -1,0 +1,23 @@
+<h1>Posts#index</h1>
+<p>Welcome to The Wall <%= session[:name] %></p>
+<br>
+<br>
+<h3>Create a Post!</h3>
+<form action="/posts/create" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+Post Content:<textarea name="content"></textarea>
+<input type="submit" value="Create Post">
+</form>
+
+<% @posts.reverse.each do |post|%>
+	<p><%= post.user.name %>: <%=post.content%></p>
+	<% post.comments.each do |comm|%>
+		<p><%=comm.user.name %>: <%=comm.content%></p>
+	<%end%>
+	<form action="/comments/create" method='POST'>
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+		<input type="hidden" name="post_id" value="<%= post.id %>">
+		<input type="text" name="content">
+		<input type="submit" value="Comment">
+	</form>
+<%end%>

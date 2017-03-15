@@ -1,0 +1,9 @@
+<h1>Users#login</h1>
+<p>Find me in app/views/users/login.html.erb</p>
+<form action="/users/login" method="POST">
+	<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+	<input type="hidden" name="_method" value="post">
+	Name:<input type="text" name="name">
+	Password:<input type="password" name="password">
+	<input type="submit" value="Login">
+</form>
